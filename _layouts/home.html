@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+{% include lang.html %}
+
+{% assign posts = site.posts %}
+
+<div id="home-carousel" class="carousel-wrap" data-count="{{ posts.size }}">
+  <div class="carousel-track">
+    {% for post in posts %}
+      {% assign img = post.image.path | default: post.image | default: '/assets/img/night-bg.svg' %}
+      <article class="carousel-slide" style="background-image: linear-gradient(180deg, rgb(5 6 10 / 10%) 0%, rgb(5 6 10 / 55%) 65%, rgb(5 6 10 / 90%) 100%), url('{{ img | relative_url }}');">
+        <div class="carousel-slide-content">
+          {% if post.categories.size > 0 %}
+            <span class="carousel-badge">{{ post.categories.first }}</span>
+          {% endif %}
+          <h1><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h1>
+          {% if post.description %}
+            <p class="carousel-desc">{{ post.description }}</p>
+          {% endif %}
+          <div class="carousel-meta">
+            {% include datetime.html date=post.date lang=lang %}
+          </div>
+          <a href="{{ post.url | relative_url }}" class="carousel-cta">
+            Read writeup <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+    {% else %}
+      <article class="carousel-slide carousel-empty">
+        <div class="carousel-slide-content">
+          <h1>No writeups yet</h1>
+          <p class="carousel-desc">Add a post to <code>_posts/</code> to get started.</p>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+
+  {% if posts.size > 1 %}
+    <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous writeup">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button type="button" class="carousel-arrow carousel-next" aria-label="Next writeup">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <div class="carousel-dots">
+      {% for post in posts %}
+        <button type="button" class="carousel-dot" aria-label="Go to slide {{ forloop.index }}"></button>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<script src="{{ '/assets/js/carousel.js' | relative_url }}"></script>

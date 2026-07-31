@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#05060a"/>
+      <stop offset="45%" stop-color="#0a1220"/>
+      <stop offset="100%" stop-color="#0d1a1c"/>
+    </linearGradient>
+    <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#dfe9f0" stop-opacity="0.85"/>
+      <stop offset="35%" stop-color="#8fd3c9" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#8fd3c9" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mist" cx="50%" cy="100%" r="75%">
+      <stop offset="0%" stop-color="#123a3a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#123a3a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+
+  <!-- moon -->
+  <circle cx="1280" cy="180" r="260" fill="url(#moonGlow)"/>
+  <circle cx="1280" cy="180" r="68" fill="#eef4f8"/>
+  <circle cx="1262" cy="160" r="9" fill="#d7e3ea" opacity="0.5"/>
+  <circle cx="1300" cy="200" r="14" fill="#d7e3ea" opacity="0.4"/>
+  <circle cx="1295" cy="155" r="6" fill="#d7e3ea" opacity="0.35"/>
+
+  <!-- stars -->
+  <g fill="#ffffff">
+    <circle cx="80" cy="70" r="1.6" opacity="0.9"/>
+    <circle cx="150" cy="140" r="1.1" opacity="0.55"/>
+    <circle cx="230" cy="60" r="1.4" opacity="0.75"/>
+    <circle cx="300" cy="180" r="1" opacity="0.5"/>
+    <circle cx="370" cy="90" r="1.7" opacity="0.85"/>
+    <circle cx="430" cy="220" r="1.1" opacity="0.5"/>
+    <circle cx="500" cy="50" r="1.3" opacity="0.7"/>
+    <circle cx="560" cy="150" r="1" opacity="0.45"/>
+    <circle cx="620" cy="100" r="1.6" opacity="0.8"/>
+    <circle cx="40" cy="250" r="1.2" opacity="0.6"/>
+    <circle cx="700" cy="60" r="1.1" opacity="0.55"/>
+    <circle cx="760" cy="190" r="1.4" opacity="0.7"/>
+    <circle cx="820" cy="110" r="1" opacity="0.45"/>
+    <circle cx="900" cy="40" r="1.5" opacity="0.8"/>
+    <circle cx="960" cy="170" r="1.1" opacity="0.5"/>
+    <circle cx="1020" cy="80" r="1.3" opacity="0.65"/>
+    <circle cx="1080" cy="230" r="1" opacity="0.45"/>
+    <circle cx="120" cy="320" r="1.2" opacity="0.55"/>
+    <circle cx="260" cy="280" r="1" opacity="0.4"/>
+    <circle cx="480" cy="300" r="1.3" opacity="0.6"/>
+    <circle cx="640" cy="260" r="1" opacity="0.4"/>
+    <circle cx="820" cy="310" r="1.2" opacity="0.5"/>
+    <circle cx="950" cy="270" r="1" opacity="0.4"/>
+    <circle cx="1120" cy="90" r="1.4" opacity="0.7"/>
+    <circle cx="1420" cy="70" r="1.3" opacity="0.6"/>
+    <circle cx="1500" cy="150" r="1" opacity="0.45"/>
+    <circle cx="1550" cy="60" r="1.5" opacity="0.75"/>
+  </g>
+
+  <!-- mist over the treeline -->
+  <rect x="0" y="560" width="1600" height="340" fill="url(#mist)"/>
+
+  <!-- distant treeline -->
+  <polygon fill="#070c0d" opacity="0.9" points="
+    0,900 0,780 45,730 95,790 140,700 190,760 235,690 285,770 335,710 380,780
+    430,650 480,750 530,700 585,790 630,720 685,760 730,680 785,770 835,700
+    885,760 930,680 985,750 1035,700 1085,780 1130,700 1185,760 1230,690
+    1285,770 1330,710 1380,760 1430,680 1480,750 1530,700 1600,760 1600,900"/>
+
+  <!-- nearer treeline (darker, larger) -->
+  <polygon fill="#04070a" points="
+    0,900 0,820 70,760 130,830 190,750 260,820 320,740 390,830 450,760
+    520,840 590,750 660,830 730,770 800,840 870,760 940,830 1010,750
+    1080,830 1150,770 1220,840 1290,760 1360,830 1430,770 1500,840
+    1600,780 1600,900"/>
+</svg>

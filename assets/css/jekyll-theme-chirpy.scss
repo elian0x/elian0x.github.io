@@ -1,0 +1,296 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* ---------------------------------------------------------------- */
+/* Custom brand overrides for elian0x — keeps the Chirpy layout/UX  */
+/* but swaps the accent palette so it doesn't read as a copy of any */
+/* other Chirpy-based site.                                          */
+/* ---------------------------------------------------------------- */
+
+:root[data-bs-theme='dark'] {
+  --link-color: #2dd4bf;
+  --link-underline-color: rgb(30 110 102);
+  --sidebar-active-color: #2dd4bf;
+  --toc-highlight: #2dd4bf;
+  --checkbox-checked-color: var(--link-color);
+  --tag-hover: rgb(20 62 58);
+  --card-hover-bg: #1c332f;
+  --prompt-info-bg: rgb(11 66 61 / 70%);
+  --prompt-info-icon-color: #2dd4bf;
+  --btn-share-hover-color: #2dd4bf;
+}
+
+.site-title {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+  letter-spacing: -0.5px;
+
+  &::after {
+    content: '_';
+    animation: elian0x-blink 1.1s steps(1) infinite;
+  }
+}
+
+@keyframes elian0x-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Night-forest background + glassmorphism panels                   */
+/* ---------------------------------------------------------------- */
+
+:root[data-bs-theme='dark'] {
+  --main-bg: transparent;
+  --sidebar-bg: rgb(15 20 26 / 55%);
+  --topbar-bg: rgb(15 20 26 / 45%);
+  --card-bg: rgb(20 28 32 / 55%);
+  --card-header-bg: rgb(20 28 32 / 70%);
+  --menu-bg: rgb(18 24 29 / 92%);
+}
+
+body {
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgb(5 6 10 / 45%) 0%, rgb(5 6 10 / 65%) 55%, rgb(5 6 10 / 88%) 100%),
+    url('{{ "/assets/img/night-bg.svg" | relative_url }}') center bottom / cover no-repeat;
+}
+
+#sidebar,
+#topbar-wrapper,
+.post-preview,
+.categories.card,
+.list-group-item,
+#mode-toggle + .dropdown-menu {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+#sidebar {
+  border-right: 1px solid rgb(255 255 255 / 8%);
+}
+
+#topbar-wrapper {
+  border-bottom: 1px solid rgb(255 255 255 / 6%);
+}
+
+/* ---------------------------------------------------------------- */
+/* Home writeup carousel — one big card at a time, image left /     */
+/* text right, arrow navigation. Not full-screen.                   */
+/* ---------------------------------------------------------------- */
+
+body:has(#home-carousel) {
+  main[aria-label='Main Content'] {
+    @media (min-width: 1200px) {
+      flex: 0 0 84% !important;
+      max-width: 84% !important;
+    }
+  }
+
+  #panel-wrapper {
+    @media (min-width: 1200px) {
+      flex: 0 0 16% !important;
+      max-width: 16% !important;
+    }
+  }
+}
+
+.carousel-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  margin: 2rem 0 3rem;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  height: clamp(300px, calc(100vh - 235px), 620px);
+  background-size: cover;
+  background-position: center;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
+}
+
+.carousel-slide-content {
+  max-width: 640px;
+  color: #f2f2f2;
+
+  h1 {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+    color: inherit;
+
+    @media (min-width: 768px) {
+      font-size: 2.1rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: #2dd4bf;
+      }
+    }
+  }
+}
+
+.carousel-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #2dd4bf;
+  border: 1px solid #2dd4bf;
+  border-radius: 999px;
+  padding: 0.2rem 0.75rem;
+}
+
+.carousel-desc {
+  font-size: 1rem;
+  color: rgb(230 230 230 / 85%);
+  margin: 0.5rem 0 1rem;
+}
+
+.carousel-meta {
+  font-size: 0.85rem;
+  color: rgb(230 230 230 / 65%);
+  margin-bottom: 1.25rem;
+}
+
+.carousel-cta {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  color: #05060a;
+  background: #2dd4bf;
+  font-weight: 600;
+  padding: 0.55rem 1.1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+
+  &:hover {
+    background: #5eead4;
+    text-decoration: none;
+    color: #05060a;
+  }
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid rgb(255 255 255 / 20%);
+  background: rgb(15 20 26 / 70%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+
+  &:hover {
+    background: rgb(45 212 191 / 25%);
+    border-color: #2dd4bf;
+  }
+}
+
+.carousel-prev {
+  left: 0.75rem;
+}
+
+.carousel-next {
+  right: 0.75rem;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.carousel-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  border: none;
+  background: rgb(255 255 255 / 35%);
+  cursor: pointer;
+  padding: 0;
+
+  &.active {
+    background: #2dd4bf;
+  }
+}
+
+.carousel-empty {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 260px;
+}
+
+/* ---------------------------------------------------------------- */
+/* "Areas of Focus" side panel (replaces default "Recently Updated") */
+/* ---------------------------------------------------------------- */
+
+.areas-of-focus-list {
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.4rem 0;
+    font-size: 0.85rem;
+    line-height: 1.3rem;
+    color: var(--text-muted-color);
+
+    i {
+      flex: 0 0 auto;
+      width: 1.1rem;
+      text-align: center;
+      color: #2dd4bf;
+      opacity: 0.9;
+      font-size: 0.85rem;
+    }
+  }
+}
