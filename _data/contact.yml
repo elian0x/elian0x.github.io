@@ -6,10 +6,6 @@
 - type: twitter
   icon: "fa-brands fa-x-twitter"
 
-- type: email
-  icon: "fas fa-at"
-  noblank: true # open link in current tab
-
 - type: rss
   icon: "fas fa-square-rss"
   noblank: true
